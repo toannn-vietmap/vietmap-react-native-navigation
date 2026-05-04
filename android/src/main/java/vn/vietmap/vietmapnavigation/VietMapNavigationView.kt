@@ -212,7 +212,7 @@ class VietMapNavigationView(
         var initialLongitude: Double? = null
         var mapZoomLevel: Double = 15.0
         var mapStyleURL: String? =
-            "https://maps.vietmap.vn/api/maps/light/styles.json?apikey=YOUR_API_KEY_HERE"
+            "https://maps.vietmap.vn/api/maps/light/styles.json?apikey=48393b4b028c4189b9013b1722e5c09d0cb834c32e26e64b"
 
         var distanceRemaining: Double? = null
         var durationRemaining: Double? = null
