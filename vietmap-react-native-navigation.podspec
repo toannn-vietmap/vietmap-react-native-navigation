@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/vietmap-company/vietmap-react-native-navigation"
   s.license    = { :type => "BSD-3-Clause", :file => "LICENSE" }
   s.authors      = { "VietMap" => "maps-api.support@vietmap.vn" }
-  s.platforms    = { :ios => "12.4" }
+  s.platforms    = { :ios => "13.4" }
   s.source       = { :git => "https://github.com/vietmap-company/vietmap-react-native-navigation.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,swift}"
@@ -49,7 +49,6 @@ Pod::Spec.new do |s|
   s.dependency 'VietMapNavigation', '3.3.0'
   s.dependency 'VietMapCoreNavigation', '3.1.0'
   s.dependency 'VietmapTrackingSDK', '1.2.2'
-  s.platform = :ios, '12.0'
   s.swift_version = '5.0'
 end
 

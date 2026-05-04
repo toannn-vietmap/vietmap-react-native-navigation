@@ -196,7 +196,7 @@ const VietMapNavigationScreen = () => {
 
   // Get initial location
   useEffect(() => {
-    VietMapNavigationController.configureAlertAPI("YOUR_API_KEY_HERE", "YOUR_API_KEY_ID_HERE")
+    VietMapNavigationController.configureAlertAPI("YOUR_API_KEY_ALERT_HERE", "YOUR_API_KEY_ID_HERE")
     VietMapNavigationController.configVehicleSpeedAlert("VEHICLE_ID", VehicleType.truck, 5, 1500);
     getCurrentLocation();
   }, []);
@@ -355,7 +355,7 @@ const VietMapNavigationScreen = () => {
           initialLatLngZoom={
             {
               lat: 10.704619,
-              long: 106.800106,
+              lng: 106.800106,
               zoom: 13
             }}
           navigationPadding={{

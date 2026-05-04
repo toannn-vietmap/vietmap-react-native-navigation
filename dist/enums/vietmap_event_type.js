@@ -7,7 +7,7 @@ export var VietMapEvents;
     VietMapEvents["ROUTE_BUILD_CANCELLED"] = "routeBuildCancelled";
     VietMapEvents["ROUTE_BUILD_NO_ROUTES_FOUND"] = "routeBuildNoRoutesFound";
     VietMapEvents["PROGRESS_CHANGE"] = "progressChange";
-    VietMapEvents["USER_OFF_ROUTE"] = "userOffRoute";
+    VietMapEvents["USER_OFF_ROUTE"] = "onUserOffRoute";
     VietMapEvents["MILESTONE_EVENT"] = "onMilestoneEvent";
     VietMapEvents["NAVIGATION_RUNNING"] = "onNavigationRunning";
     VietMapEvents["NAVIGATION_CANCELLED"] = "onNavigationCancelled";

@@ -20,7 +20,8 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.uimanager.ThemedReactContext
-import com.facebook.react.uimanager.events.RCTEventEmitter
+import com.facebook.react.uimanager.UIManagerHelper
+import vn.vietmap.utilities.VietMapEvent
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.mapbox.api.directions.v5.models.BannerInstructions
@@ -463,9 +464,9 @@ class VietMapNavigationView(
     private fun sendErrorToReact(error: String?) {
         val event = Arguments.createMap()
         event.putString("error", error)
-        context
-            .getJSModule(RCTEventEmitter::class.java)
-            .receiveEvent(id, "onError", event)
+        val surfaceId = UIManagerHelper.getSurfaceId(this)
+        UIManagerHelper.getEventDispatcherForReactTag(context, id)
+            ?.dispatchEvent(VietMapEvent(surfaceId, id, "onError", event))
     }
 
     fun onDropViewInstance() {
@@ -522,7 +523,7 @@ class VietMapNavigationView(
 
     fun setInitialLatLngZoom(initialLatLng: ReadableMap) {
         initialLatitude = initialLatLng.getDouble("lat")
-        initialLongitude = initialLatLng.getDouble("long")
+        initialLongitude = initialLatLng.getDouble("lng")
         mapZoomLevel = initialLatLng.getDouble("zoom")
 
     }
@@ -1432,9 +1433,9 @@ class VietMapNavigationView(
 
         val convertedData = JSONConverter().convertJsonToReadableMap(dataString)
         writableMap.putMap("data", convertedData)
-        context
-            .getJSModule(RCTEventEmitter::class.java)
-            .receiveEvent(id, "onRouteProgressChange", writableMap)
+        val surfaceId = UIManagerHelper.getSurfaceId(this)
+        UIManagerHelper.getEventDispatcherForReactTag(context, id)
+            ?.dispatchEvent(VietMapEvent(surfaceId, id, "onRouteProgressChange", writableMap))
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -1481,16 +1482,15 @@ class VietMapNavigationView(
     }
 
     private fun sendEvent(eventName: VietMapEvents, data: JSONObject? = null) {
-
         val writableMap = Arguments.createMap()
         writableMap.putString("eventType", eventName.value)
         if (data != null) {
             val convertedData = JSONConverter().convertJsonToReadableMap(data)
             writableMap.putMap("data", convertedData)
         }
-        context
-            .getJSModule(RCTEventEmitter::class.java)
-            .receiveEvent(id, eventName.value, writableMap)
+        val surfaceId = UIManagerHelper.getSurfaceId(this)
+        UIManagerHelper.getEventDispatcherForReactTag(context, id)
+            ?.dispatchEvent(VietMapEvent(surfaceId, id, eventName.value, writableMap))
     }
 
     fun setBaseUrl(baseUrl: String) {

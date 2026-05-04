@@ -20,8 +20,11 @@ extension UIView {
         return nil
     }
     
-    func addToWindow()  {
-        let window = UIApplication.shared.keyWindow!
+    func addToWindow() {
+        guard let window = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .flatMap({ $0.windows })
+            .first(where: { $0.isKeyWindow }) else { return }
         self.frame = window.bounds
         window.addSubview(self)
     }
@@ -73,7 +76,7 @@ extension UIView {
     @objc var onError: RCTDirectEventBlock?
     @objc var onNavigationFinished: RCTDirectEventBlock?
     @objc var onArrival: RCTDirectEventBlock?
-    @objc var userOffRoute: RCTDirectEventBlock?
+    @objc var onUserOffRoute: RCTDirectEventBlock?
     @objc var onRouteBuilt: RCTDirectEventBlock?
     @objc var onRouteBuildFailed: RCTDirectEventBlock?
     @objc var onMapLongClick: RCTDirectEventBlock?
@@ -344,7 +347,7 @@ extension UIView {
         navigationMapView.recenterMap()
         if let userInfo = notification.object as? RouteController {
             let locationData = userInfo.locationManager.location?.coordinate
-            sendEvent(event: userOffRoute, data: encodeLocation(location: locationData!, position: nil))
+            sendEvent(event: onUserOffRoute, data: encodeLocation(location: locationData!, position: nil))
         }
     }
     
@@ -375,7 +378,7 @@ extension UIView {
         mapView.navigationMapDelegate = self
         mapView.userTrackingMode = .follow
         mapView.logoView.isHidden = false
-        if let initLat = initialLatLngZoom["lat"] as? Double, let initLong = initialLatLngZoom["long"] as? Double {
+        if let initLat = initialLatLngZoom["lat"] as? Double, let initLong = initialLatLngZoom["lng"] as? Double {
             let initialCoordinate = CLLocationCoordinate2D(latitude: initLat, longitude: initLong)
             let zoomLevel: Double = initialLatLngZoom["zoom"] as? Double ?? 6
             
