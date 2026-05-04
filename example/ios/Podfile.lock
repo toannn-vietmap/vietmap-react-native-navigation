@@ -2038,7 +2038,7 @@ PODS:
     - React-perflogger (= 0.80.1)
     - React-utils (= 0.80.1)
     - SocketRocket
-  - RNGestureHandler (2.28.0):
+  - RNGestureHandler (2.31.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -2068,11 +2068,11 @@ PODS:
     - Yoga
   - SocketRocket (0.7.1)
   - VietMap (2.9.4)
-  - vietmap-react-native-navigation (1.6.2):
+  - vietmap-react-native-navigation (1.7.3):
     - React-Core
     - VietMapCoreNavigation (= 3.1.0)
     - VietMapNavigation (= 3.3.0)
-    - VietmapTrackingSDK (= 1.2.1)
+    - VietmapTrackingSDK (= 1.2.2)
   - VietMapCoreNavigation (3.1.0):
     - VietMapDirections.swift (~> 2.0.1)
     - VietMapTurf (~> 1.0.2)
@@ -2086,7 +2086,7 @@ PODS:
   - VietMapPolyline (1.0.6)
   - VietMapSolar (1.0.3)
   - VietMapSpeech (2.0.1)
-  - VietmapTrackingSDK (1.2.1)
+  - VietmapTrackingSDK (1.2.2)
   - VietMapTurf (1.0.2)
   - Yoga (0.0.0)
 
@@ -2400,17 +2400,17 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: afd905e84ee36e1678016ae04d7370c75ed539be
   ReactCodegen: cbe81c2a57b146be99212d9cfb2081cfdcfd2133
   ReactCommon: 832545e6bc03f7b2d02216e626f871532ec8da4f
-  RNGestureHandler: 6f443b059572ab9b5444df158c0de8bda98aec2c
+  RNGestureHandler: f8981905666178f1690d3f30fc63864668eb0e85
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   VietMap: 12d51550ae540231b40cec59516002213bb46dcc
-  vietmap-react-native-navigation: 3b75a869d59f107b0afbb93d3798344482f47cbe
+  vietmap-react-native-navigation: 3f6c6be6f4dca01650ee77e7995cd0120f1a83fb
   VietMapCoreNavigation: a5a6e2bed913c321abafca37286647b5b1dc52ed
   VietMapDirections.swift: d622c98e381281b39f7dcac2b0445ee2f6e1690e
   VietMapNavigation: dcdbbf438fc0b1d968679db9bf0d7bc913fb39de
   VietMapPolyline: e599c6d0a0a4b3672957881e2f666ba2141a4e83
   VietMapSolar: ef412e72efb00b700f2223e701cae66b446bf17b
   VietMapSpeech: fe5bd0c2ed2757aa7ac59337d74480e25e5a36ed
-  VietmapTrackingSDK: b9849297a720d8db7d85aee27c5247318aaf2f51
+  VietmapTrackingSDK: c438a028e794e9efdcd0b523cc968c7831c3b26f
   VietMapTurf: 323ba165ae0aeb0fb6622d427e5341c14f4afada
   Yoga: daa1e4de4b971b977b23bc842aaa3e135324f1f3
 
