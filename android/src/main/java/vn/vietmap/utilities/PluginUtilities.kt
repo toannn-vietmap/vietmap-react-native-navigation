@@ -3,7 +3,7 @@ package vn.vietmap.utilities
 import android.content.Context
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.uimanager.ThemedReactContext
-import com.facebook.react.uimanager.events.RCTEventEmitter
+import com.facebook.react.uimanager.UIManagerHelper
 import vn.vietmap.model.VietMapEvents
 import vn.vietmap.model.VietMapRouteProgressEvent
 
@@ -26,16 +26,13 @@ class PluginUtilities {
             return context.getString(stringRes)
         }
 
-        fun sendRouteProgressEvent(context: ThemedReactContext, event: VietMapRouteProgressEvent, id:Int) {
+        fun sendRouteProgressEvent(context: ThemedReactContext, event: VietMapRouteProgressEvent, id: Int) {
             val dataString = event.toJson()
             val writableMap = Arguments.createMap()
             writableMap.putString("eventType", VietMapEvents.PROGRESS_CHANGE.value)
-            writableMap.putString("data",dataString)
-
-            context
-                .getJSModule(RCTEventEmitter::class.java)
-                .receiveEvent(id, "sendRouteProgressEvent", writableMap)
-//            VietMapNavigationPlugin.eventSink?.success(jsonString)
+            writableMap.putString("data", dataString)
+            UIManagerHelper.getEventDispatcher(context, id)
+                ?.dispatchEvent(VietMapEvent(-1, id, "sendRouteProgressEvent", writableMap))
         }
 
 //        fun sendEvent(event: VietMapEvents, data: String = "") {

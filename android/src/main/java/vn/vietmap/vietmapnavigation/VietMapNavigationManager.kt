@@ -6,14 +6,20 @@ import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.common.MapBuilder
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
+import com.facebook.react.uimanager.ViewManagerDelegate
 import com.facebook.react.uimanager.annotations.ReactProp
+import com.facebook.react.viewmanagers.VietMapNavigationManagerDelegate
+import com.facebook.react.viewmanagers.VietMapNavigationManagerInterface
 import vn.vietmap.vietmapsdk.Vietmap
-//import vn.vietmap.maps.ResourceOptionsManager
-//import com.mapbox.maps.TileStoreUsageMode
 import javax.annotation.Nonnull
 
 class VietMapNavigationManager(mCallerContext: ReactApplicationContext) :
-    SimpleViewManager<VietMapNavigationView>() {
+    SimpleViewManager<VietMapNavigationView>(),
+    VietMapNavigationManagerInterface<VietMapNavigationView> {
+
+    private val delegate = VietMapNavigationManagerDelegate(this)
+
+    override fun getDelegate(): ViewManagerDelegate<VietMapNavigationView> = delegate
     init {
         mCallerContext.runOnUiQueueThread {
         }
@@ -45,7 +51,7 @@ class VietMapNavigationManager(mCallerContext: ReactApplicationContext) :
             "routeBuildCancelled" to MapBuilder.of("registrationName", "routeBuildCancelled"),
             "routeBuildNoRoutesFound" to MapBuilder.of("registrationName", "routeBuildNoRoutesFound"),
             "onRouteProgressChange" to MapBuilder.of("registrationName", "onRouteProgressChange"),
-            "userOffRoute" to MapBuilder.of("registrationName", "userOffRoute"),
+            "onUserOffRoute" to MapBuilder.of("registrationName", "onUserOffRoute"),
             "onMilestoneEvent" to MapBuilder.of("registrationName", "onMilestoneEvent"),
             "onNavigationRunning" to MapBuilder.of("registrationName", "onNavigationRunning"),
             "onNavigationCancelled" to MapBuilder.of("registrationName", "onNavigationCancelled"),
@@ -70,54 +76,55 @@ class VietMapNavigationManager(mCallerContext: ReactApplicationContext) :
     }
 
     @ReactProp(name = "apiKey")
-    fun setApiKey(view: VietMapNavigationView, sources: String?) {
-        if (sources == null) {
-            view.setApiKey("")
-            return
-        } 
-        view.setApiKey(sources)
+    override fun setApiKey(view: VietMapNavigationView, sources: String?) {
+        view.setApiKey(sources ?: "")
     }
 
     @ReactProp(name = "baseUrl")
-    fun setBaseUrl(view: VietMapNavigationView, sources: String?) {
+    override fun setBaseUrl(view: VietMapNavigationView, sources: String?) {
         if (sources != null) {
             view.setBaseUrl(sources)
         }
     }
 
     @ReactProp(name = "navigationZoomLevel")
-    fun setNavigationZoomLevel(view: VietMapNavigationView, zoomLevel: Double) {
+    override fun setNavigationZoomLevel(view: VietMapNavigationView, zoomLevel: Double) {
         view.setNavigationZoomLevel(zoomLevel)
     }
 
     @ReactProp(name = "initialLatLngZoom")
-    fun setInitialLatLngZoom(view: VietMapNavigationView, initialLatLng: ReadableMap?) {
-        if(initialLatLng!=null) {
+    override fun setInitialLatLngZoom(view: VietMapNavigationView, initialLatLng: ReadableMap?) {
+        if (initialLatLng != null) {
             view.setInitialLatLngZoom(initialLatLng)
         }
     }
+
     @ReactProp(name = "navigationTiltLevel")
-    fun setNavigationTiltAnchor(view: VietMapNavigationView, tiltAnchor: Double) {
-        view.setNavigationTiltAnchor(tiltAnchor)
+    override fun setNavigationTiltLevel(view: VietMapNavigationView, value: Double) {
+        view.setNavigationTiltAnchor(value)
     }
+
     @ReactProp(name = "navigationPadding")
-    fun setNavigationPadding(view: VietMapNavigationView, padding: ReadableMap) {
-        view.setNavigationPadding(padding)
+    override fun setNavigationPadding(view: VietMapNavigationView, padding: ReadableMap?) {
+        if (padding != null) {
+            view.setNavigationPadding(padding)
+        }
     }
+
     @ReactProp(name = "shouldSimulateRoute")
-    fun setShouldSimulateRoute(view: VietMapNavigationView, shouldSimulateRoute: Boolean) {
+    override fun setShouldSimulateRoute(view: VietMapNavigationView, shouldSimulateRoute: Boolean) {
         view.setShouldSimulateRoute(shouldSimulateRoute)
     }
 
     @ReactProp(name = "apiKeyAlert")
-    fun setApiKeyAlert(view: VietMapNavigationView, apiKeyAlert: String?) {
+    override fun setApiKeyAlert(view: VietMapNavigationView, apiKeyAlert: String?) {
         if (apiKeyAlert != null) {
             view.setApiKeyAlert(apiKeyAlert)
         }
     }
 
     @ReactProp(name = "apiIDAlert")
-    fun setApiIDAlert(view: VietMapNavigationView, apiIDAlert: String?) {
+    override fun setApiIDAlert(view: VietMapNavigationView, apiIDAlert: String?) {
         if (apiIDAlert != null) {
             view.setApiIDAlert(apiIDAlert)
         }

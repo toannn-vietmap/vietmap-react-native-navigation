@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { requireNativeComponent, StyleSheet , View} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { IVietMapNavigationProps } from './typings';
+import RNVietMapNavigation from './VietMapNavigationNativeComponent';
 
 const VietMapNavigation = (props: IVietMapNavigationProps) => {
-  return  <RNVietMapNavigation style={styles.container} {...props} /> 
+  return <RNVietMapNavigation style={styles.container} {...(props as any)} />;
 };
-
-const RNVietMapNavigation = requireNativeComponent<IVietMapNavigationProps>('VietMapNavigation');
 
 const styles = StyleSheet.create({
   container: {

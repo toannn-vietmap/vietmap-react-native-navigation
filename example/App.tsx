@@ -9,7 +9,7 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, useColorScheme, View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 // import NavigationComponent from './NavigationComponent';
 // import VMNavigation from './VMNavigationComponent';
-import VietMapNavigationScreen from './Navigation/VietMapNavigation'
+import VietMapNavigationScreen from './Navigation/VietMapNavigation';
 import {PermissionsAndroid} from 'react-native';
 import { VietMapNavigationModule } from '../src/native_modules';
 

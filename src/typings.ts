@@ -33,7 +33,7 @@ type NavigationPadding = {
 };
 type InitialLatLngZoom = {
   lat: number;
-  long: number;
+  lng: number;
   zoom: number;
 };
 
@@ -72,7 +72,7 @@ export interface IVietMapNavigationProps {
   onRouteBuilding?: () => void;
   onMapReady?: () => void;
   onMilestoneEvent?: (event: MilestoneData) => void;
-  userOffRoute?: (event: LocationData) => void;
+  onUserOffRoute?: (event: LocationData) => void;
   onArrival?: (event: LocationData) => void;
   onNewRouteSelected?: (event: RouteData) => void;
   onMapClick?: (event: LocationData) => void;

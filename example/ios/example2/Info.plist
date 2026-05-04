@@ -60,8 +60,8 @@
 	<key>VietMapAPIBaseURL</key>
 	<string>https://maps.vietmap.vn/api/navigations/route/</string>
 	<key>VietMapAccessToken</key>
-	<string>523c9ab88bfdb4ce03250c3753e1b5d7a1f76f8b9d7b5044</string>
+	<string>YOUR_API_KEY_HERE</string>
 	<key>VietMapURL</key>
-	<string>https://maps.vietmap.vn/api/maps/light/styles.json?apikey=48393b4b028c4189b9013b1722e5c09d0cb834c32e26e64b</string>
+	<string>https://maps.vietmap.vn/api/maps/light/styles.json?apikey=YOUR_API_KEY_HERE</string>
 </dict>
 </plist>

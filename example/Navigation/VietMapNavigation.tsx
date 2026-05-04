@@ -196,7 +196,7 @@ const VietMapNavigationScreen = () => {
 
   // Get initial location
   useEffect(() => {
-    VietMapNavigationController.configureAlertAPI("727494d3eb92b2f8d3a6aea1d8caf607f158bfb179776f45", "a415885a-eb96-4463-8434-41afe0398f2e")
+    VietMapNavigationController.configureAlertAPI("YOUR_API_KEY_ALERT_HERE", "YOUR_API_KEY_ID_HERE")
     VietMapNavigationController.configVehicleSpeedAlert("VEHICLE_ID", VehicleType.truck, 5, 1500);
     getCurrentLocation();
   }, []);
@@ -355,7 +355,7 @@ const VietMapNavigationScreen = () => {
           initialLatLngZoom={
             {
               lat: 10.704619,
-              long: 106.800106,
+              lng: 106.800106,
               zoom: 13
             }}
           navigationPadding={{
@@ -366,7 +366,7 @@ const VietMapNavigationScreen = () => {
           }}
           navigationZoomLevel={18}
           shouldSimulateRoute={true}
-          apiKey={'523c9ab88bfdb4ce03250c3753e1b5d7a1f76f8b9d7b5044'}
+          apiKey={'YOUR_API_KEY_HERE'}
           onRouteProgressChange={(event) => {
             setRouteProgressData(event)
             calculateEstimatedArrivalTime()
